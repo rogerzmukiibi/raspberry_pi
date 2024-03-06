@@ -1,24 +1,13 @@
-from picamera import PiCamera
 import time
+from picamera import PiCamera
 from datetime import datetime
 
 timestring = datetime.now().strftime('%Y-%m-%d_%H%M%S')
 
-class Capture:
+class Camera:
     def __init__(self):
         self.camera = PiCamera()
-    
-    def init_camera(self):
-        if self.camera is None:
-            self.camera = PiCamera()
-            self.camera.resolution = (640, 480)
-        
-        
-        
-        
-        
-        
-        
+        self.camera.resolution = (640, 480)
 
     def capture_image(self):
         img_path = 'images/' + timestring + '.jpg'
@@ -27,11 +16,7 @@ class Capture:
         self.camera.capture(img_path)
         self.camera.stop_preview()
         print(f"Image saved as {img_path}")
-
-# Example usage
-if __name__ == "__main__":
-    capture = Capture()
-    capture.capture_image()
-
-        
     
+if __name__ == "__main__":
+    capture = Camera()
+    capture.capture_image()
