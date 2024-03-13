@@ -3,7 +3,7 @@ import RPi.GPIO
 
 
 class DHT11Sensor:
-    def __init__(self, sensor_pin, sensor_type=Adafruit_DHT.DHT11):
+    def __init__(self, sensor_pin, sensor_type=Adafruit_DHT.DHT22):
         """
         Initializes the DHT11 sensor object.
 

@@ -7,10 +7,10 @@ timestring = datetime.now().strftime('%Y-%m-%d_%H%M%S')
 class Camera:
     def __init__(self):
         self.camera = PiCamera()
-        self.camera.resolution = (640, 480)
+        self.camera.resolution = (1280, 720)
 
     def capture_image(self):
-        img_path = 'images/' + timestring + '.jpg'
+        img_path =  timestring + '.jpg'
         self.camera.start_preview()
         time.sleep(2)  # Allow time for camera to adjust
         self.camera.capture(img_path)
