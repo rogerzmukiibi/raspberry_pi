@@ -10,7 +10,7 @@ class Camera:
         self.camera.resolution = (1280, 720)
 
     def capture_image(self):
-        img_path =  timestring + '.jpg'
+        img_path = 'images/' + timestring + '.jpg'
         self.camera.start_preview()
         time.sleep(2)  # Allow time for camera to adjust
         self.camera.capture(img_path)

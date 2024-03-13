@@ -1,35 +1,33 @@
-from picamera import PiCamera
 import time
+from picamera import PiCamera
 from datetime import datetime
+from lcd import drivers
+
 
 timestring = datetime.now().strftime('%Y-%m-%d_%H%M%S')
 
-class Capture:
+class Camera:
     def __init__(self):
         self.camera = PiCamera()
-    
-    def init_camera(self):
-        if self.camera is None:
-            self.camera = PiCamera()
-            self.camera.resolution = (640, 480)
-        
-        
-        
-        
-        
-        
-        
+        self.camera.resolution = (1280, 720)
+        self.display = drivers.Lcd()
 
     def capture_image(self):
-        time.sleep(2)
         img_path = 'images/' + timestring + '.jpg'
         self.camera.start_preview()
         time.sleep(2)  # Allow time for camera to adjust
         self.camera.capture(img_path)
         self.camera.stop_preview()
         print(f"Image saved as {img_path}")
+        # Display message on LCD
+        self.display_message("Image captured")
 
-# Example usage
+    def display_message(self, message):
+        # Clear the display
+        self.display.lcd_clear()
+        # Display message on LCD
+        self.display.lcd_display_string(message, 1)
+
 if __name__ == "__main__":
-    capture = Capture()
+    capture = Camera()
     capture.capture_image()
